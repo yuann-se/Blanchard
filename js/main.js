@@ -1,14 +1,14 @@
 window.addEventListener('DOMContentLoaded', function () {
 
 
-  // Header dropdown
+  // HEADER DROPDOWN
   const artstyleBtn = document.querySelectorAll('.select-list__btn');
   const artstyleDropdown = document.querySelectorAll('.select-list__dropdown');
 
   // Show/hide dropdown on click
-  artstyleBtn.forEach(function(btn) {
-    btn.addEventListener('click', function(ev) {
-      artstyleDropdown.forEach(function(dropdown) {
+  artstyleBtn.forEach(function (btn) {
+    btn.addEventListener('click', function (ev) {
+      artstyleDropdown.forEach(function (dropdown) {
         if (ev.currentTarget.dataset.artstyle === dropdown.dataset.artstyle) {
           dropdown.classList.toggle('select-list__dropdown--is-active');
           ev.currentTarget.classList.toggle('select-list__btn--is-active');
@@ -17,8 +17,8 @@ window.addEventListener('DOMContentLoaded', function () {
         }
       })
       // Disable showing multiple dropdowns at a time
-      artstyleBtn.forEach(function(btn) {
-        artstyleDropdown.forEach(function(dropdown) {
+      artstyleBtn.forEach(function (btn) {
+        artstyleDropdown.forEach(function (dropdown) {
           if (btn.dataset.artstyle === dropdown.dataset.artstyle) {
             if (!dropdown.classList.contains('select-list__dropdown--is-active')) {
               btn.classList.remove('select-list__btn--is-active');
@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', function () {
   })
 
 
-  // Hero swiper
+  // HERO SWIPER
   // const heroSwiper = new Swiper('#hero__swiper', {
   //   slidesPerView: 1,
   //   speed: 3000,
@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', function () {
   //   },
   // });
 
-  // Gallery swiper
+  // GALLERY SWIPER
   const gallerySwiper = new Swiper('#gallery__swiper', {
     slidesPerView: 3,
     spaceBetween: 50,
@@ -57,7 +57,7 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 
 
-// Catalog accordion
+  // CATALOG ACCORDION
   $("#accordion").accordion({
     heightStyle: "content",
     collapsible: true,
@@ -65,7 +65,7 @@ window.addEventListener('DOMContentLoaded', function () {
   // $(".ui-accordion-content").show();
 
 
-  // Gallery select
+  // GALLERY SELECT
   const gallerySelect = document.querySelector('#gallery__select');
   const choicesGallery = new Choices(gallerySelect, {
     searchEnabled: false,
@@ -75,16 +75,38 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 
   // Removing selected item from dropdown list
-  document.querySelector('.choices').addEventListener('click', function() {
-    document.querySelectorAll('.choices__item--choice').forEach(function(item) {
+  // By click:
+  document.querySelector('.choices').addEventListener('click', function () {
+    document.querySelectorAll('.choices__item--choice').forEach(function (item) {
       if (item.textContent === document.querySelector('.choices__list--single').textContent) {
         item.classList.add('display-none')
       }
     })
   })
 
+  // By keypress:
+  document.querySelector('.choices').addEventListener('keydown', function () {
+    document.querySelectorAll('.choices__item--choice').forEach(function (item) {
+      if (item.textContent === document.querySelector('.choices__list--single').textContent) {
+        item.classList.add('display-none')
+      }
+    })
+  })
 
-  // Catalog tabs
+  // GALLERY CHECKBOXES
+  // Enable checked state for checkbox by Enter
+  let checkboxes = document.querySelectorAll('.gallery__checkbox-label');
+  checkboxes.forEach(function (checkbox) {
+    checkbox.addEventListener('keydown', function (e) {
+      if (e.keyCode === 13) {
+        console.log (e.currentTarget.childNodes[1]);
+        e.currentTarget.childNodes[1].toggleAttribute('checked');
+      }
+    })
+  })
+
+
+  // CATALOG TABS
   let mastersBtns = document.querySelectorAll('.masters__btn');
   let mastersCards = document.querySelectorAll('.masters-card');
 
@@ -111,7 +133,7 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 
 
-  // Events swiper
+  // EVENTS SWIPER
   const eventsSwiper = new Swiper('#events__swiper', {
     slidesPerView: 3,
     spaceBetween: 50,
@@ -123,7 +145,7 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 
 
-  // Projects swiper
+  // PROJECTS SWIPER
   const projectsSwiper = new Swiper('#projects__swiper', {
     slidesPerView: 3,
     spaceBetween: 50,
@@ -135,7 +157,7 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 
 
-  // Yandex map
+  // YANDEX MAP
   // ymaps.ready(init);
   // function init() {
   //   var myMap = new ymaps.Map("contacts__map", {
