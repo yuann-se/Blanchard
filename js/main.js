@@ -75,8 +75,8 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 
   // Removing selected item from dropdown list
-  // By click:
-  document.querySelector('.choices').addEventListener('click', function () {
+  // In case of mouse interaction:
+  document.querySelector('.choices').addEventListener('mouseenter', function () {
     document.querySelectorAll('.choices__item--choice').forEach(function (item) {
       if (item.textContent === document.querySelector('.choices__list--single').textContent) {
         item.classList.add('display-none')
@@ -84,7 +84,7 @@ window.addEventListener('DOMContentLoaded', function () {
     })
   })
 
-  // By keypress:
+  // In case of keyboard interaction:
   document.querySelector('.choices').addEventListener('keydown', function () {
     document.querySelectorAll('.choices__item--choice').forEach(function (item) {
       if (item.textContent === document.querySelector('.choices__list--single').textContent) {
@@ -93,13 +93,14 @@ window.addEventListener('DOMContentLoaded', function () {
     })
   })
 
+
   // GALLERY CHECKBOXES
   // Enable checked state for checkbox by Enter
   let checkboxes = document.querySelectorAll('.gallery__checkbox-label');
   checkboxes.forEach(function (checkbox) {
     checkbox.addEventListener('keydown', function (e) {
       if (e.keyCode === 13) {
-        console.log (e.currentTarget.childNodes[1]);
+        console.log(e.currentTarget.childNodes[1]);
         e.currentTarget.childNodes[1].toggleAttribute('checked');
       }
     })
@@ -145,6 +146,27 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 
 
+  // PROJECTS TOOLTIPS
+
+  tippy('#projects__tooltip--1', {
+    content: 'Пример современных тенденций - современная методология разработки',
+    trigger: 'click',
+    maxWidth: 265,
+  });
+
+  tippy('#projects__tooltip--2', {
+    content: 'В стремлении повысить качество',
+    trigger: 'click',
+    maxWidth: 265,
+  });
+
+  tippy('#projects__tooltip--3', {
+    content: 'Приятно, граждане, наблюдать, как сделанные на базе аналитики выводы вызывают у вас эмоции',
+    trigger: 'click',
+    maxWidth: 265,
+  });
+
+
   // PROJECTS SWIPER
   const projectsSwiper = new Swiper('#projects__swiper', {
     slidesPerView: 3,
@@ -155,6 +177,47 @@ window.addEventListener('DOMContentLoaded', function () {
       prevEl: ".projects__swiper-button-prev",
     },
   });
+
+
+  // FOOTER
+
+  // Removing color backgroung from focus state when input field is not empty
+  document.querySelectorAll('.form__input').forEach(function (input) {
+    input.addEventListener('input', function () {
+      input.classList.remove('not-empty');
+      if (input.value) {
+        input.classList.add('not-empty')
+      }
+    })
+  })
+
+  // Phone number mask
+  var tel = document.querySelector(".form__input--tel");
+  var im = new Inputmask("+7(999) 999-99-99");
+  im.mask(tel);
+
+  // Form validation
+  window.onload = function () {
+
+    var form = document.getElementById("contacts__form");
+    var pristine = new Pristine(form);
+
+    pristine.addValidator(tel, function (value, el) {
+      const phone = tel.inputmask.unmaskedvalue();
+      if (Number(phone) && (phone.length === 10)) {
+        return true;
+      }
+      return false;
+    }, "Недопустимый формат", 2, false);
+
+    form.addEventListener('submit', function (e) {
+      if(!pristine.validate()){
+        e.preventDefault();
+      }
+    });
+  };
+
+
 
 
   // YANDEX MAP
