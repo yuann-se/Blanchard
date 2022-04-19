@@ -29,6 +29,15 @@ window.addEventListener('DOMContentLoaded', function () {
     })
   })
 
+  // SCROLLBAR
+  document.querySelectorAll('.dropdown__list-wrapper').forEach(function (dropdown) {
+    new SimpleBar(dropdown, {
+      autoHide: false,
+      scrollbarMaxSize: 28,
+    })
+  })
+
+
 
   // HERO SWIPER
   // const heroSwiper = new Swiper('#hero__swiper', {
@@ -40,6 +49,47 @@ window.addEventListener('DOMContentLoaded', function () {
   //     delay: 3000,
   //   },
   // });
+
+
+  // GALLERY CHECKBOXES
+  // Enable checked state for checkbox by Enter
+  let checkboxes = document.querySelectorAll('.gallery__checkbox-label');
+  checkboxes.forEach(function (checkbox) {
+    checkbox.addEventListener('keydown', function (e) {
+      if (e.keyCode === 13) {
+        e.currentTarget.childNodes[1].toggleAttribute('checked');
+      }
+    })
+  })
+
+  // GALLERY SELECT
+  const gallerySelect = document.querySelector('#gallery__select');
+  const choicesGallery = new Choices(gallerySelect, {
+    searchEnabled: false,
+    shouldSort: false,
+    allowHTML: true,
+    itemSelectText: '',
+  });
+
+  // Removing selected item from dropdown list
+  // In case of mouse interaction:
+  document.querySelector('.choices').addEventListener('mouseenter', function () {
+    document.querySelectorAll('.choices__item--choice').forEach(function (item) {
+      if (item.textContent === document.querySelector('.choices__list--single').textContent) {
+        item.remove();
+      }
+    })
+  })
+
+  // In case of keyboard interaction:
+  document.querySelector('.choices').addEventListener('keydown', function () {
+    document.querySelectorAll('.choices__item--choice').forEach(function (item) {
+      if (item.textContent === document.querySelector('.choices__list--single').textContent) {
+        item.remove();
+      }
+    })
+  })
+
 
   // GALLERY SWIPER
   const gallerySwiper = new Swiper('#gallery__swiper', {
@@ -62,49 +112,8 @@ window.addEventListener('DOMContentLoaded', function () {
     heightStyle: "content",
     collapsible: true,
   });
+  // Open all accordion panels
   // $(".ui-accordion-content").show();
-
-
-  // GALLERY SELECT
-  const gallerySelect = document.querySelector('#gallery__select');
-  const choicesGallery = new Choices(gallerySelect, {
-    searchEnabled: false,
-    shouldSort: false,
-    allowHTML: true,
-    itemSelectText: '',
-  });
-
-  // Removing selected item from dropdown list
-  // In case of mouse interaction:
-  document.querySelector('.choices').addEventListener('mouseenter', function () {
-    document.querySelectorAll('.choices__item--choice').forEach(function (item) {
-      if (item.textContent === document.querySelector('.choices__list--single').textContent) {
-        item.classList.add('display-none')
-      }
-    })
-  })
-
-  // In case of keyboard interaction:
-  document.querySelector('.choices').addEventListener('keydown', function () {
-    document.querySelectorAll('.choices__item--choice').forEach(function (item) {
-      if (item.textContent === document.querySelector('.choices__list--single').textContent) {
-        item.classList.add('display-none')
-      }
-    })
-  })
-
-
-  // GALLERY CHECKBOXES
-  // Enable checked state for checkbox by Enter
-  let checkboxes = document.querySelectorAll('.gallery__checkbox-label');
-  checkboxes.forEach(function (checkbox) {
-    checkbox.addEventListener('keydown', function (e) {
-      if (e.keyCode === 13) {
-        console.log(e.currentTarget.childNodes[1]);
-        e.currentTarget.childNodes[1].toggleAttribute('checked');
-      }
-    })
-  })
 
 
   // CATALOG TABS
@@ -191,12 +200,12 @@ window.addEventListener('DOMContentLoaded', function () {
     })
   })
 
-  // Phone number mask
+  // PHONE NUMBER MASK
   var tel = document.querySelector(".form__input--tel");
   var im = new Inputmask("+7(999) 999-99-99");
   im.mask(tel);
 
-  // Form validation
+  // FORM VALIDATION
   window.onload = function () {
 
     var form = document.getElementById("contacts__form");
@@ -211,13 +220,11 @@ window.addEventListener('DOMContentLoaded', function () {
     }, "Недопустимый формат", 2, false);
 
     form.addEventListener('submit', function (e) {
-      if(!pristine.validate()){
+      if (!pristine.validate()) {
         e.preventDefault();
       }
     });
   };
-
-
 
 
   // YANDEX MAP
