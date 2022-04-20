@@ -1,7 +1,47 @@
 window.addEventListener('DOMContentLoaded', function () {
 
+  // -----HEADER-----
 
-  // HEADER DROPDOWN
+  // SEARCH (FOR TABLET AND SMALLER)
+  // Open search
+  document.querySelector('#search-btn').addEventListener('click', function () {
+    document.querySelector('.header-top__search-wrapper').classList.add('is-shown');
+    document.querySelector('.search__input-wrapper').classList.add('is-shown')
+  })
+  // Close search
+  document.querySelector('#close-search-btn').addEventListener('click', function () {
+    document.querySelector('.header-top__search-wrapper').classList.remove('is-shown');
+    document.querySelector('.search__input-wrapper').classList.remove('is-shown')
+  })
+
+  //BURGER MENU
+  // By click on burger:
+  // burger transformes to cross, navigation appears, page scroll disabled
+  document.querySelector('#burger-btn').addEventListener('click', function () {
+    document.querySelector('#burger-btn').classList.toggle('is-transformed');
+    document.querySelector('.header-top__wrapper').classList.toggle('is-shown');
+    document.querySelector('html').classList.toggle('no-scroll');
+  })
+  // Burger-btn dissapears when navigation is scrolled
+  document.querySelector('.header-top__wrapper').addEventListener('scroll', function () {
+    document.querySelector('#burger-btn').classList.remove('is-hidden')
+    if (document.querySelector('.header-top__wrapper').scrollTop > 0) {
+      document.querySelector('#burger-btn').classList.add('is-hidden')
+    }
+  })
+  // By click on navigation link:
+  // navigation scrolls to top then dissapears, page scroll enabled, cross btn transforms back to burger
+  document.querySelectorAll('.header-nav__link').forEach(function (navLink) {
+    navLink.addEventListener('click', function () {
+      document.querySelector('.header-top__wrapper').scrollTop = 0;
+      document.querySelector('.header-top__wrapper').classList.remove('is-shown');
+      document.querySelector('html').classList.remove('no-scroll');
+      document.querySelector('#burger-btn').classList.remove('is-hidden');
+      document.querySelector('#burger-btn').classList.remove('is-transformed');
+    })
+  })
+
+  // DROPDOWNS
   const artstyleBtn = document.querySelectorAll('.select-list__btn');
   const artstyleDropdown = document.querySelectorAll('.select-list__dropdown');
 
@@ -37,9 +77,9 @@ window.addEventListener('DOMContentLoaded', function () {
     })
   })
 
+  // -----HERO-----
 
-
-  // HERO SWIPER
+  // SWIPER
   // const heroSwiper = new Swiper('#hero__swiper', {
   //   slidesPerView: 1,
   //   speed: 3000,
@@ -51,8 +91,10 @@ window.addEventListener('DOMContentLoaded', function () {
   // });
 
 
-  // GALLERY CHECKBOXES
-  // Enable checked state for checkbox by Enter
+  // -----GALLERY-----
+
+  // CHECKBOXES
+  // Enable checked state by Enter
   let checkboxes = document.querySelectorAll('.gallery__checkbox-label');
   checkboxes.forEach(function (checkbox) {
     checkbox.addEventListener('keydown', function (e) {
@@ -62,7 +104,7 @@ window.addEventListener('DOMContentLoaded', function () {
     })
   })
 
-  // GALLERY SELECT
+  // SELECT
   const gallerySelect = document.querySelector('#gallery__select');
   const choicesGallery = new Choices(gallerySelect, {
     searchEnabled: false,
@@ -91,23 +133,41 @@ window.addEventListener('DOMContentLoaded', function () {
   })
 
 
-  // GALLERY SWIPER
+  // SWIPER
   const gallerySwiper = new Swiper('#gallery__swiper', {
-    slidesPerView: 3,
-    spaceBetween: 50,
-    slidesPerGroup: 3,
     pagination: {
-      el: ".swiper-pagination",
+      el: ".gallery__swiper-pagination",
       type: "fraction",
     },
     navigation: {
       nextEl: ".gallery__swiper-button-next",
       prevEl: ".gallery__swiper-button-prev",
     },
+    a11y: {
+      prevSlideMessage: 'Предыдущая страница',
+      nextSlideMessage: 'Следующая страница'
+    },
+    breakpoints: {
+      320: {
+        slidesPerView: 1
+      },
+      768: {
+        slidesPerView: 2,
+        slidesPerGroup: 2,
+        spaceBetween: 35,
+      },
+      1301: {
+        slidesPerView: 3,
+        slidesPerGroup: 3,
+        spaceBetween: 50,
+      }
+    }
   });
 
 
-  // CATALOG ACCORDION
+  // -----CATALOG-----
+
+  // ACCORDION
   $("#accordion").accordion({
     heightStyle: "content",
     collapsible: true,
@@ -116,7 +176,7 @@ window.addEventListener('DOMContentLoaded', function () {
   // $(".ui-accordion-content").show();
 
 
-  // CATALOG TABS
+  // TABS
   let mastersBtns = document.querySelectorAll('.masters__btn');
   let mastersCards = document.querySelectorAll('.masters-card');
 
@@ -143,20 +203,45 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 
 
-  // EVENTS SWIPER
+  // -----EVENTS-----
+
+  // SWIPER
   const eventsSwiper = new Swiper('#events__swiper', {
-    slidesPerView: 3,
-    spaceBetween: 50,
-    slidesPerGroup: 3,
+    pagination: {
+      el: '.events__swiper-pagination',
+      type: 'bullets',
+      clickable: true,
+    },
     navigation: {
       nextEl: ".events__swiper-button-next",
       prevEl: ".events__swiper-button-prev",
     },
+    a11y: {
+      prevSlideMessage: 'Предыдущая страница',
+      nextSlideMessage: 'Следующая страница',
+      paginationBulletMessage: 'Перейти на слайд {{index}}',
+      slideLabelMessage: '',
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+        slidesPerGroup: 35,
+      },
+      1024: {
+        slidesPerView: 3,
+        slidesPerGroup: 3,
+        spaceBetween: 27,
+      },
+      1300: {
+        spaceBetween: 50,
+      }
+    }
   });
 
 
-  // PROJECTS TOOLTIPS
+  // -----PROJECTS-----
 
+  // TOOLTIPS
   tippy('#projects__tooltip--1', {
     content: 'Пример современных тенденций - современная методология разработки',
     trigger: 'click',
@@ -176,7 +261,7 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 
 
-  // PROJECTS SWIPER
+  // SWIPER
   const projectsSwiper = new Swiper('#projects__swiper', {
     slidesPerView: 3,
     spaceBetween: 50,
@@ -185,10 +270,25 @@ window.addEventListener('DOMContentLoaded', function () {
       nextEl: ".projects__swiper-button-next",
       prevEl: ".projects__swiper-button-prev",
     },
+    a11y: {
+      prevSlideMessage: 'Предыдущая страница',
+      nextSlideMessage: 'Следующая страница'
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 50,
+        slidesPerGroup: 2,
+      },
+      1025: {
+        slidesPerView: 3,
+        slidesPerGroup: 3,
+      }
+    }
   });
 
 
-  // FOOTER
+  // -----CONTACTS-----
 
   // Removing color backgroung from focus state when input field is not empty
   document.querySelectorAll('.form__input').forEach(function (input) {
@@ -225,7 +325,6 @@ window.addEventListener('DOMContentLoaded', function () {
       }
     });
   };
-
 
   // YANDEX MAP
   // ymaps.ready(init);
