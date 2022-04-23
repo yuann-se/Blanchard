@@ -151,7 +151,14 @@ window.addEventListener('DOMContentLoaded', function () {
       320: {
         slidesPerView: 1
       },
-      768: {
+
+      450: {
+        slidesPerView: 2,
+        slidesPerGroup: 2,
+        spaceBetween: 15,
+      },
+
+      700: {
         slidesPerView: 2,
         slidesPerGroup: 2,
         spaceBetween: 35,
@@ -199,6 +206,9 @@ window.addEventListener('DOMContentLoaded', function () {
         card.classList.remove('masters-card--active');
       });
       document.querySelector(`[data-target="${path}"]`).classList.add('masters-card--active');
+      if (screen.width <= 1000) {
+        document.querySelector('.catalog__tabs-wrapper').scrollIntoView();
+      }
     });
   });
 
@@ -223,18 +233,26 @@ window.addEventListener('DOMContentLoaded', function () {
       slideLabelMessage: '',
     },
     breakpoints: {
-      768: {
+      450: {
         slidesPerView: 2,
-        slidesPerGroup: 35,
+        slidesPerGroup: 2,
+        spaceBetween: 15,
+      },
+      700: {
+        slidesPerView: 2,
+        slidesPerGroup: 2,
+        spaceBetween: 35,
       },
       1024: {
         slidesPerView: 3,
         slidesPerGroup: 3,
         spaceBetween: 27,
       },
-      1300: {
-        spaceBetween: 50,
-      }
+      // 1300: {
+      //   slidesPerView: 3,
+      //   slidesPerGroup: 3,
+      //   spaceBetween: 50,
+      // }
     }
   });
 
@@ -263,9 +281,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
   // SWIPER
   const projectsSwiper = new Swiper('#projects__swiper', {
-    slidesPerView: 3,
-    spaceBetween: 50,
-    slidesPerGroup: 3,
     navigation: {
       nextEl: ".projects__swiper-button-next",
       prevEl: ".projects__swiper-button-prev",
@@ -275,14 +290,20 @@ window.addEventListener('DOMContentLoaded', function () {
       nextSlideMessage: 'Следующая страница'
     },
     breakpoints: {
-      768: {
+      450: {
         slidesPerView: 2,
-        spaceBetween: 50,
+        spaceBetween: 15,
         slidesPerGroup: 2,
       },
-      1025: {
+      700: {
+        slidesPerView: 2,
+        spaceBetween: 34,
+        slidesPerGroup: 2,
+      },
+      1300: {
         slidesPerView: 3,
         slidesPerGroup: 3,
+        spaceBetween: 50,
       }
     }
   });
