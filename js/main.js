@@ -80,15 +80,15 @@ window.addEventListener('DOMContentLoaded', function () {
   // -----HERO-----
 
   // SWIPER
-  // const heroSwiper = new Swiper('#hero__swiper', {
-  //   slidesPerView: 1,
-  //   speed: 3000,
-  //   effect: 'fade',
-  //   loop: true,
-  //   autoplay: {
-  //     delay: 3000,
-  //   },
-  // });
+  const heroSwiper = new Swiper('#hero__swiper', {
+    slidesPerView: 1,
+    speed: 3000,
+    effect: 'fade',
+    loop: true,
+    autoplay: {
+      delay: 3000,
+    },
+  });
 
 
   // -----GALLERY-----
@@ -148,17 +148,13 @@ window.addEventListener('DOMContentLoaded', function () {
       nextSlideMessage: 'Следующая страница'
     },
     breakpoints: {
-      320: {
-        slidesPerView: 1
-      },
-
-      450: {
+      451: {
         slidesPerView: 2,
         slidesPerGroup: 2,
         spaceBetween: 15,
       },
 
-      700: {
+      701: {
         slidesPerView: 2,
         slidesPerGroup: 2,
         spaceBetween: 35,
@@ -169,6 +165,39 @@ window.addEventListener('DOMContentLoaded', function () {
         spaceBetween: 50,
       }
     }
+  });
+
+
+  // MODALS
+
+  let gallerySlides = document.querySelectorAll('.gallery__swiper-slide');
+  let modalPanels = document.querySelectorAll('.modal__container');
+
+  for (let i = 0; i < gallerySlides.length; ++i) {
+    gallerySlides[i].setAttribute('data-slide', `${i}`);
+  }
+
+  for (let i = 0; i < modalPanels.length; ++i) {
+    modalPanels[i].setAttribute('data-modal', `${i}`);
+  }
+
+  gallerySlides.forEach(function (slide) {
+    slide.addEventListener('click', function (e) {
+      document.querySelector('html').classList.add('no-scroll');
+      document.querySelector('.gallerry__modal').classList.add('gallerry__modal--is-active');
+      const slideNumber = e.currentTarget.dataset.slide;
+      modalPanels.forEach(function (modal) {
+        modal.classList.remove('modal__container--is-active');
+      });
+      document.querySelector(`[data-modal="${slideNumber}"]`).classList.add('modal__container--is-active');
+    });
+  });
+
+  document.querySelectorAll('.modal__close-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelector('html').classList.remove('no-scroll');
+      document.querySelector('.gallerry__modal').classList.remove('gallerry__modal--is-active');
+    })
   });
 
 
@@ -233,7 +262,7 @@ window.addEventListener('DOMContentLoaded', function () {
       slideLabelMessage: '',
     },
     breakpoints: {
-      450: {
+      451: {
         slidesPerView: 2,
         slidesPerGroup: 2,
         spaceBetween: 15,
@@ -243,16 +272,16 @@ window.addEventListener('DOMContentLoaded', function () {
         slidesPerGroup: 2,
         spaceBetween: 35,
       },
-      1024: {
+      1000: {
         slidesPerView: 3,
         slidesPerGroup: 3,
         spaceBetween: 27,
       },
-      // 1300: {
-      //   slidesPerView: 3,
-      //   slidesPerGroup: 3,
-      //   spaceBetween: 50,
-      // }
+      1300: {
+        slidesPerView: 3,
+        slidesPerGroup: 3,
+        spaceBetween: 50,
+      }
     }
   });
 
@@ -290,12 +319,12 @@ window.addEventListener('DOMContentLoaded', function () {
       nextSlideMessage: 'Следующая страница'
     },
     breakpoints: {
-      450: {
+      451: {
         slidesPerView: 2,
         spaceBetween: 15,
         slidesPerGroup: 2,
       },
-      700: {
+      701: {
         slidesPerView: 2,
         spaceBetween: 34,
         slidesPerGroup: 2,
@@ -348,21 +377,21 @@ window.addEventListener('DOMContentLoaded', function () {
   };
 
   // YANDEX MAP
-  // ymaps.ready(init);
-  // function init() {
-  //   var myMap = new ymaps.Map("contacts__map", {
-  //     center: [55.758468, 37.601088],
-  //     zoom: 14
-  //   });
+  ymaps.ready(init);
+  function init() {
+    var myMap = new ymaps.Map("contacts__map", {
+      center: [55.758468, 37.601088],
+      zoom: 14
+    });
 
-  //   var myPlacemark = new ymaps.Placemark([55.758468, 37.601088], {}, {
-  //     iconLayout: 'default#image',
-  //     iconImageHref: 'img/placemark.svg',
-  //     iconImageSize: [20, 20],
-  //   });
+    var myPlacemark = new ymaps.Placemark([55.758468, 37.601088], {}, {
+      iconLayout: 'default#image',
+      iconImageHref: 'img/placemark.svg',
+      iconImageSize: [20, 20],
+    });
 
-  //   myMap.geoObjects.add(myPlacemark);
-  // }
+    myMap.geoObjects.add(myPlacemark);
+  }
 
 
 
