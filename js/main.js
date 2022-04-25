@@ -15,8 +15,6 @@ window.addEventListener('DOMContentLoaded', function () {
   })
 
   //BURGER MENU
-  // By click on burger:
-  // burger transformes to cross, navigation appears, page scroll disabled
   document.querySelector('#burger-btn').addEventListener('click', function () {
     document.querySelector('#burger-btn').classList.toggle('is-transformed');
     document.querySelector('.header-top__wrapper').classList.toggle('is-shown');
@@ -29,8 +27,7 @@ window.addEventListener('DOMContentLoaded', function () {
       document.querySelector('#burger-btn').classList.add('is-hidden')
     }
   })
-  // By click on navigation link:
-  // navigation scrolls to top then dissapears, page scroll enabled, cross btn transforms back to burger
+  // When navigation link is clicked:
   document.querySelectorAll('.header-nav__link').forEach(function (navLink) {
     navLink.addEventListener('click', function () {
       document.querySelector('.header-top__wrapper').scrollTop = 0;
@@ -45,7 +42,6 @@ window.addEventListener('DOMContentLoaded', function () {
   const artstyleBtn = document.querySelectorAll('.select-list__btn');
   const artstyleDropdown = document.querySelectorAll('.select-list__dropdown');
 
-  // Show/hide dropdown on click
   artstyleBtn.forEach(function (btn) {
     btn.addEventListener('click', function (ev) {
       artstyleDropdown.forEach(function (dropdown) {
@@ -80,15 +76,15 @@ window.addEventListener('DOMContentLoaded', function () {
   // -----HERO-----
 
   // SWIPER
-  const heroSwiper = new Swiper('#hero__swiper', {
-    slidesPerView: 1,
-    speed: 3000,
-    effect: 'fade',
-    loop: true,
-    autoplay: {
-      delay: 3000,
-    },
-  });
+  // const heroSwiper = new Swiper('#hero__swiper', {
+  //   slidesPerView: 1,
+  //   speed: 3000,
+  //   effect: 'fade',
+  //   loop: true,
+  //   autoplay: {
+  //     delay: 3000,
+  //   },
+  // });
 
 
   // -----GALLERY-----
@@ -101,6 +97,13 @@ window.addEventListener('DOMContentLoaded', function () {
       if (e.keyCode === 13) {
         e.currentTarget.childNodes[1].toggleAttribute('checked');
       }
+    })
+  })
+
+  checkboxes.forEach(function (checkbox) {
+    checkbox.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.currentTarget.childNodes[1].toggleAttribute('checked');
     })
   })
 
@@ -171,32 +174,33 @@ window.addEventListener('DOMContentLoaded', function () {
   // MODALS
 
   let gallerySlides = document.querySelectorAll('.gallery__swiper-slide');
-  let modalPanels = document.querySelectorAll('.modal__container');
+  let modalWindows = document.querySelectorAll('.gallery__modal');
 
   for (let i = 0; i < gallerySlides.length; ++i) {
     gallerySlides[i].setAttribute('data-slide', `${i}`);
   }
 
-  for (let i = 0; i < modalPanels.length; ++i) {
-    modalPanels[i].setAttribute('data-modal', `${i}`);
+  for (let i = 0; i < modalWindows.length; ++i) {
+    modalWindows[i].setAttribute('data-modal', `${i}`);
   }
 
   gallerySlides.forEach(function (slide) {
     slide.addEventListener('click', function (e) {
       document.querySelector('html').classList.add('no-scroll');
-      document.querySelector('.gallerry__modal').classList.add('gallerry__modal--is-active');
       const slideNumber = e.currentTarget.dataset.slide;
-      modalPanels.forEach(function (modal) {
-        modal.classList.remove('modal__container--is-active');
+      modalWindows.forEach(function (modal) {
+        modal.classList.remove('gallery__modal--is-active');
       });
-      document.querySelector(`[data-modal="${slideNumber}"]`).classList.add('modal__container--is-active');
+      document.querySelector(`[data-modal="${slideNumber}"]`).classList.add('gallery__modal--is-active');
     });
   });
 
   document.querySelectorAll('.modal__close-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       document.querySelector('html').classList.remove('no-scroll');
-      document.querySelector('.gallerry__modal').classList.remove('gallerry__modal--is-active');
+      modalWindows.forEach(function (modal) {
+        modal.classList.remove('gallery__modal--is-active');
+      });
     })
   });
 
@@ -392,17 +396,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
     myMap.geoObjects.add(myPlacemark);
   }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
