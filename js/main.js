@@ -76,15 +76,15 @@ window.addEventListener('DOMContentLoaded', function () {
   // -----HERO-----
 
   // SWIPER
-  // const heroSwiper = new Swiper('#hero__swiper', {
-  //   slidesPerView: 1,
-  //   speed: 3000,
-  //   effect: 'fade',
-  //   loop: true,
-  //   autoplay: {
-  //     delay: 3000,
-  //   },
-  // });
+  const heroSwiper = new Swiper('#hero__swiper', {
+    slidesPerView: 1,
+    speed: 3000,
+    effect: 'fade',
+    loop: true,
+    autoplay: {
+      delay: 3000,
+    },
+  });
 
 
   // -----GALLERY-----
@@ -300,13 +300,13 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 
   tippy('#projects__tooltip--2', {
-    content: 'В стремлении повысить качество',
+    content: 'Приятно, граждане, наблюдать, как сделанные на базе аналитики выводы вызывают у вас эмоции',
     trigger: 'click',
     maxWidth: 265,
   });
 
   tippy('#projects__tooltip--3', {
-    content: 'Приятно, граждане, наблюдать, как сделанные на базе аналитики выводы вызывают у вас эмоции',
+    content: 'В стремлении повысить качество',
     trigger: 'click',
     maxWidth: 265,
   });
@@ -332,6 +332,11 @@ window.addEventListener('DOMContentLoaded', function () {
         slidesPerView: 2,
         spaceBetween: 34,
         slidesPerGroup: 2,
+      },
+      1000: {
+        slidesPerView: 2,
+        slidesPerGroup: 2,
+        spaceBetween: 50,
       },
       1300: {
         slidesPerView: 3,

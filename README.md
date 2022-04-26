@@ -3,7 +3,7 @@
 
 - No grid flexbox layout
 - Vanilla JS
-- Adaptive, semantic, accessible
+- Adaptive, semantic, accessible, pixel-perfect
 - Interactive elements include:
     - side menu
     - modal windows
