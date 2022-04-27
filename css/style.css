@@ -2137,6 +2137,7 @@ html .ui-button.ui-state-disabled:active {
     z-index: 200;
     padding: 120px 100px 50px 50px;
 
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
