@@ -2,6 +2,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // -----HEADER-----
 
+  // Changing bottom border color when input field is not empty
+  document.querySelectorAll('.search__input').forEach(input =>
+    input.addEventListener('input', () => {
+      input.classList.remove('search__input--is-active');
+      if (input.value) {
+        input.classList.add('search__input--is-active');
+      }
+    }));
+
   // SEARCH (FOR TABLET AND SMALLER)
   // Open search
   document.querySelector('#search-btn').addEventListener('click', () => {
