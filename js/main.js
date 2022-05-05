@@ -99,24 +99,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // -----GALLERY-----
 
-  // CHECKBOXES
-  const checkboxes = document.querySelectorAll('.gallery__checkbox-label');
-  // Enable checked state by Enter
-  checkboxes.forEach(checkbox =>
-    checkbox.addEventListener('keydown', e => {
-      if (e.keyCode === 13) {
-        e.currentTarget.childNodes[1].toggleAttribute('checked');
-      }
-    }));
-
-  // This block is reqired to prevent errors
-  checkboxes.forEach(checkbox =>
-    checkbox.addEventListener('click', e => {
-      e.preventDefault();
-      e.currentTarget.childNodes[1].toggleAttribute('checked');
-    }));
-
-
   // SELECT
   const gallerySelect = document.querySelector('#gallery__select');
 
@@ -137,11 +119,33 @@ window.addEventListener('DOMContentLoaded', () => {
     }));
 
   // In case of keyboard interaction:
-  document.querySelector('.choices').addEventListener('keydown', () =>
+  document.querySelector('.choices').addEventListener('keydown', (e) => {
+    if (e.keyCode === 32) {
+      e.preventDefault();
+    }
     document.querySelectorAll('.choices__item--choice').forEach(item => {
       if (item.textContent === document.querySelector('.choices__list--single').textContent) {
         item.remove();
       }
+    })
+  });
+
+
+  // CHECKBOXES
+  const checkboxes = document.querySelectorAll('.gallery__checkbox-label');
+  // Enable checked state by Enter
+  checkboxes.forEach(checkbox =>
+    checkbox.addEventListener('keydown', e => {
+      if (e.keyCode === 13) {
+        e.currentTarget.childNodes[1].toggleAttribute('checked');
+      }
+    }));
+
+  // This block is reqired to prevent errors
+  checkboxes.forEach(checkbox =>
+    checkbox.addEventListener('click', e => {
+      e.preventDefault();
+      e.currentTarget.childNodes[1].toggleAttribute('checked');
     }));
 
 
@@ -157,7 +161,9 @@ window.addEventListener('DOMContentLoaded', () => {
     },
     a11y: {
       prevSlideMessage: 'Предыдущая страница',
-      nextSlideMessage: 'Следующая страница'
+      nextSlideMessage: 'Следующая страница',
+      slideLabelMessage: 'Слайд номер {{index}} из {{slidesLength}}',
+      slideRole: null,
     },
     breakpoints: {
       451: {
