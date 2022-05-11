@@ -152,7 +152,11 @@ picture {
   position: absolute;
   inset: -2px -5px;
   z-index: -100;
-  transition: background-color .1s ease;
+  transition: background-color .2s ease, transform .3s ease-out;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%;
 }
 
 .basic-link:focus-visible {
@@ -162,6 +166,8 @@ picture {
 
 .basic-link:focus-visible::before {
   background: var(--base-color_dark);
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
 }
 
 .basic-link:active {
@@ -397,7 +403,7 @@ picture {
 }
 
 .dropdown__list-wrapper {
-  height: 225px;
+  max-height: 225px;
   width: 250px;
   padding: 2px;
   padding-right: 15px;
@@ -1118,16 +1124,18 @@ picture {
 .ui-button,
 html .ui-button.ui-state-disabled:hover,
 html .ui-button.ui-state-disabled:active {
+  position: relative;
+  z-index: 100;
   border: none;
   background: none;
   border-bottom: 1px solid var(--border-color);
-  border-top: 1px solid transparent;
+  border-top: 1px solid var(--border-color);
   color: #333;
 }
 
-.ui-state-default:first-child {
+/* .ui-state-default:first-child {
   border-top: 1px solid var(--border-color);
-}
+} */
 
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
@@ -1150,9 +1158,10 @@ html .ui-button.ui-state-disabled:active {
 .ui-state-hover,
 .ui-widget-content .ui-state-hover,
 .ui-widget-header .ui-state-hover {
+  z-index: 200;
   color: var(--base-color);
   border-bottom: 1px solid var(--base-color);
-  border-top: 1px solid var(--base-color) !important;
+  border-top: 1px solid var(--base-color);
 }
 
 .ui-state-hover .accordion__title-text,
@@ -1167,7 +1176,7 @@ html .ui-button.ui-state-disabled:active {
 .ui-widget-header .ui-state-active {
   color: var(--base-color_dark);
   border-bottom: 1px solid var(--base-color_dark);
-  border-top: 1px solid var(--base-color_dark) !important;
+  border-top: 1px solid var(--base-color_dark);
 }
 
 .ui-state-active .accordion__title-text,
@@ -1189,13 +1198,41 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .masters-list .masters__btn {
+  position: relative;
   font-weight: 400;
   font-size: 16px;
   line-height: 32px;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+}
+
+.masters__btn::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  background: var(--base-color);
+  height: 1px;
+  -webkit-transition-property: right;
+  transition-property: right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
 }
 
 .masters__btn:focus-visible {
   color: var(--font-color-light);
+  border: none;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  position: relative;
+  overflow: hidden;
+}
+
+.masters__btn:focus-visible::before {
   background: var(--base-color);
 }
 
@@ -1204,8 +1241,13 @@ html .ui-button.ui-state-disabled:active {
   background: none;
 }
 
+.masters__btn:active::after {
+  right: 0;
+}
+
 .masters__btn--active {
   color: var(--base-color_dark);
+  border: none;
 }
 
 /* Coming soon */
@@ -1468,10 +1510,10 @@ html .ui-button.ui-state-disabled:active {
   justify-content: center;
 }
 
-.events__swiper-pagination .swiper-pagination-bullet {
+.events__swiper .events__swiper-pagination .swiper-pagination-bullet {
   width: 10px;
   height: 10px;
-  margin: 0 var(--swiper-pagination-bullet-horizontal-gap, 7px) !important;
+  margin: 0 var(--swiper-pagination-bullet-horizontal-gap, 7px);
   background: #CACACA;
   opacity: 1;
   cursor: pointer;
@@ -1482,7 +1524,7 @@ html .ui-button.ui-state-disabled:active {
   outline-offset: -1px;
 }
 
-.events__swiper-pagination .swiper-pagination-bullet-active {
+.events__swiper .events__swiper-pagination .swiper-pagination-bullet-active {
   background: #666;
 }
 
@@ -1499,6 +1541,11 @@ html .ui-button.ui-state-disabled:active {
 
 .projects__link {
   font-size: inherit;
+}
+
+.projects__link:focus-visible::before {
+  inset: -2px;
+  background: var(--base-color);
 }
 
 /* Tooltips */
@@ -1755,7 +1802,7 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .form__btn {
-  height: 50px;
+  min-height: 50px;
   padding: 10px 30px;
   font-weight: 700;
   font-size: 18px;

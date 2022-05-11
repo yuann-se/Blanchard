@@ -79,6 +79,15 @@
     fill: var(--base-color);
   }
 
+  .masters__btn:not(.masters__btn:active):hover {
+    color: var(--base-color);
+    background-color: transparent;
+  }
+
+  .masters__btn:not(.masters__btn:active):hover::after {
+    right: 0;
+  }
+
   .events__swiper-button-next:not(.events__swiper-button-next:active):hover svg ellipse,
   .events__swiper-button-prev:not(.events__swiper-button-prev:active):hover svg ellipse {
     fill: #D1A9F0;
