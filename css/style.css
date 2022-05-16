@@ -777,6 +777,10 @@ picture {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+.choices__list--dropdown .choices__item--selectable.is-selected, .choices__list[aria-expanded] .choices__item--selectable.is-selected {
+  display: none;
+}
+
 /* Checkboxes */
 .gallery__checkbox-label {
   position: relative;
@@ -1132,10 +1136,6 @@ html .ui-button.ui-state-disabled:active {
   border-top: 1px solid var(--border-color);
   color: #333;
 }
-
-/* .ui-state-default:first-child {
-  border-top: 1px solid var(--border-color);
-} */
 
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,

@@ -109,28 +109,6 @@ window.addEventListener('DOMContentLoaded', () => {
     itemSelectText: '',
   });
 
-  // Removing selected item from dropdown list
-  // In case of mouse interaction:
-  document.querySelector('.choices').addEventListener('mouseenter', () =>
-    document.querySelectorAll('.choices__item--choice').forEach(item => {
-      if (item.textContent === document.querySelector('.choices__list--single').textContent) {
-        item.remove();
-      }
-    }));
-
-  // In case of keyboard interaction:
-  document.querySelector('.choices').addEventListener('keydown', (e) => {
-    if (e.keyCode === 32) {
-      e.preventDefault();
-    }
-    document.querySelectorAll('.choices__item--choice').forEach(item => {
-      if (item.textContent === document.querySelector('.choices__list--single').textContent) {
-        item.remove();
-      }
-    })
-  });
-
-
   // CHECKBOXES
   const checkboxes = document.querySelectorAll('.gallery__checkbox-label');
   // Enable checked state by Enter
@@ -255,6 +233,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // SWIPER
   const eventsSwiper = new Swiper('#events__swiper', {
+    simulateTouch: false,
     pagination: {
       el: '.events__swiper-pagination',
       type: 'bullets',
