@@ -271,11 +271,12 @@ picture {
 .header-bottom__select-list {
   flex-basis: 1060px;
   justify-content: space-between;
+  margin-right: 30px;
 }
 
 .select-list__item {
   position: relative;
-  margin-right: 25px;
+  margin-right: 20px;
 }
 
 .select-list__btn {
@@ -317,6 +318,21 @@ picture {
 
 .select-list__btn:active .select-list__icon path {
   stroke: var(--base-color_dark);
+}
+
+.header-bottom__search-btn svg rect,
+.header-bottom__search-btn svg path {
+  transition: fill .1s ease;
+}
+
+.header-bottom__search-btn:focus svg rect,
+.header-bottom__search-btn:focus svg path {
+  fill: var(--base-color);
+}
+
+.header-bottom__search-btn:active svg rect,
+.header-bottom__search-btn:active svg path {
+  fill: var(--base-color_dark);
 }
 
 .search__input {
@@ -609,7 +625,8 @@ picture {
   font-weight: 700;
   font-size: 18px;
   color: var(--font-color-light);
-  transition: background-color .1s ease;
+  outline: 2px solid transparent;
+  transition: background-color .1s ease, outline .2s ease;
 }
 
 .hero__link:focus-visible {
@@ -790,6 +807,7 @@ picture {
   font-size: 16px;
   line-height: 32px;
   cursor: pointer;
+  transition: color .1s ease;
 }
 
 .gallery__checkbox-label:focus-visible,
@@ -810,6 +828,7 @@ picture {
   height: 12px;
   outline: 1px solid white;
   outline-offset: -1px;
+  transition: outline .1s ease;
 }
 
 .gallery__checkbox-label:focus-visible>.gallery__checkbox+.box,
@@ -868,7 +887,7 @@ picture {
   background-size: cover;
   background-position: center center;
   opacity: 0;
-  transition: opacity .1s ease;
+  transition: opacity .3s ease;
 }
 
 .gallery-swiper-slide:focus-visible {
@@ -917,7 +936,7 @@ picture {
 
 .gallery__swiper-button-next svg ellipse,
 .gallery__swiper-button-prev svg ellipse {
-  transition: fill .1s ease;
+  transition: fill .2s ease;
 }
 
 .gallery__swiper-button-next:focus-visible,
@@ -1120,6 +1139,13 @@ picture {
   font-size: 24px;
   line-height: 32px;
   transition: border .1s ease, color .1s ease;
+}
+
+.ui-corner-all, .ui-corner-top {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
 }
 
 .ui-state-default,
@@ -1477,7 +1503,7 @@ html .ui-button.ui-state-disabled:active {
 
 .events__swiper-button-next svg ellipse,
 .events__swiper-button-prev svg ellipse {
-  transition: fill .1s ease;
+  transition: fill .2s ease;
 }
 
 .events__swiper-button-next:focus-visible,
@@ -1884,9 +1910,16 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .contacts__map-container {
+  position: relative;
   max-width: none;
   height: 702px;
   padding: 0 !important;
+}
+
+.map-block {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
 }
 
 [class*='ground-pane'] {

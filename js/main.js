@@ -79,7 +79,6 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.dropdown__list-wrapper').forEach(dropdown =>
     new SimpleBar(dropdown, {
       autoHide: false,
-      scrollbarMaxSize: 28,
     }));
 
 
@@ -129,6 +128,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // SWIPER
   const gallerySwiper = new Swiper('#gallery__swiper', {
+    spaceBetween: 50,
     pagination: {
       el: ".gallery__swiper-pagination",
       type: "fraction",
@@ -192,6 +192,17 @@ window.addEventListener('DOMContentLoaded', () => {
     }));
 
 
+  // Close modal by click on overlay
+  modalWindows.forEach(modal =>
+    modal.addEventListener('click', (ev) => {
+      if (!ev.target.closest('.modal__container')) {
+        modalWindows.forEach(modal => modal.classList.remove('gallery__modal--is-active'));
+      }
+    })
+  )
+
+
+
   // -----CATALOG-----
 
   // ACCORDION
@@ -234,6 +245,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // SWIPER
   const eventsSwiper = new Swiper('#events__swiper', {
     simulateTouch: false,
+    spaceBetween: 50,
     pagination: {
       el: '.events__swiper-pagination',
       type: 'bullets',
@@ -298,6 +310,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // SWIPER
   const projectsSwiper = new Swiper('#projects__swiper', {
+    spaceBetween: 50,
     navigation: {
       nextEl: ".projects__swiper-button-next",
       prevEl: ".projects__swiper-button-prev",
@@ -384,6 +397,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     myMap.geoObjects.add(myPlacemark);
   };
+
+  document.getElementById('map-block').addEventListener('click', function () {
+    this.style.zIndex = '-1';
+  })
 
 
 

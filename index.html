@@ -30,8 +30,6 @@
   <script defer src="js/jquery-ui-1.13.0.js"></script>
   <!-- Scrollbar -->
   <script defer src="js/simplebar.js"></script>
-  <!-- Yandex maps -->
-  <script defer src="https://api-maps.yandex.ru/2.1/?apikey=вашAPI-ключ&lang=ru_RU"></script>
   <!-- Tooltips -->
   <script defer src="js/popper.min.js"></script>
   <script defer src="js/tippy-bundle.umd.js"></script>
@@ -341,7 +339,7 @@
           </li>
         </ul>
         <div class="header-bottom__search-wrapper search flex">
-          <button class="btn-reset" aria-label="Поиск">
+          <button class="btn-reset header-bottom__search-btn" aria-label="Поиск">
             <svg width="23" height="22" viewbox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="6.8678" height="1.71695"
                 transform="matrix(-0.718931 0.695081 0.718931 0.695081 4.9375 15.6534)" fill="white" />
@@ -1299,6 +1297,7 @@
         </div>
       </div>
       <div class="contacts__map-container container" id="contacts__map">
+        <div id="map-block" class="map-block"></div>
       </div>
     </section>
   </main>
@@ -1337,7 +1336,8 @@
       </div>
     </div>
   </footer>
-
+  <!-- Yandex maps -->
+  <script defer src="https://api-maps.yandex.ru/2.1/?apikey=вашAPI-ключ&lang=ru_RU"></script>
 </body>
 
 </html>

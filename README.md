@@ -2,7 +2,7 @@
 "Basic weblayout" course final project.
 
 - No grid flexbox layout
-- Vanilla JS
+- Native JS
 - Adaptive, semantic, accessible, pixel-perfect
 - Interactive elements include:
     - side menu
