@@ -1,8 +1,8 @@
 # Art gallery landing :framed_picture:
-<img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" title="HTML5" alt="HTML5" width="35" height="35"/>&nbsp;
-<img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-original.svg" title="CSS3" alt="CSS3" width="35" height="35"/>&nbsp;
-<img src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg" title="JS" alt="JS" width="35" height="35"/>&nbsp;
-<img src="https://github.com/devicons/devicon/blob/master/icons/figma/figma-original.svg" title="figma" alt="figma" width="35" height="35"/>&nbsp;
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 
 ### Features:
 - Flexbox layout
@@ -17,5 +17,5 @@
 **View on GitHub Pages --> [Blanchard :art:](https://yuann-se.github.io/Blanchard__art-gallery-landing/)**
 
 ### Preview
-![Preview](https://drive.google.com/uc?export=view&id=11wumakrBuT6WKf5vGlXX89DzF0KLhyDT)
+<img width="500" src="https://drive.google.com/uc?export=view&id=11wumakrBuT6WKf5vGlXX89DzF0KLhyDT"/>
 
