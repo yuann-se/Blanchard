@@ -14,7 +14,7 @@
     - dropdowns
     - swipers
 
-**View on GitHub Pages --> [Blanchard :art:](https://yuann-se.github.io/Blanchard__art-gallery-landing/)**
+**View on GitHub Pages --> [Blanchard :art:](https://yuann-se.github.io/Blanchard/)**
 
 ### Preview
 <img width="500" src="https://drive.google.com/uc?export=view&id=11wumakrBuT6WKf5vGlXX89DzF0KLhyDT"/>
